@@ -16,10 +16,10 @@ class User {
   email: string;
 
   @Column()
-  user: string;
+  name: string;
 
   @Column()
-  name: string;
+  cpf: string;
 
   @Column()
   password: string;

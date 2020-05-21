@@ -6,7 +6,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  // bail: 0,
+  bail: 1,
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "/private/var/folders/55/zrt1cshj4sx0jy2d91jg9l9c0000gn/T/jest_dx",
@@ -18,7 +18,7 @@ module.exports = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ['<rootDir>/src/app/*.ts'],
+  collectCoverageFrom: ['src/app/*.ts'],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "__tests__/coverage",

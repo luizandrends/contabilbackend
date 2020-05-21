@@ -12,6 +12,7 @@ export default class CreateUsersTable1589945088131
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'email',
@@ -19,12 +20,11 @@ export default class CreateUsersTable1589945088131
             isUnique: true,
           },
           {
-            name: 'user',
+            name: 'name',
             type: 'varchar',
-            isUnique: true,
           },
           {
-            name: 'name',
+            name: 'cpf',
             type: 'varchar',
           },
           {
