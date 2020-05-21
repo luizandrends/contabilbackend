@@ -5,6 +5,18 @@ import { hash } from 'bcryptjs';
 import User from '../models/User';
 
 class UserController {
+  public async get(request: Request, response: Response): Promise<Response> {
+    const userRepository = getRepository(User);
+
+    const findUser = await userRepository.findOne({
+      where: { id: request.params.id },
+    });
+
+    const { name, email, cpf, provider } = findUser;
+
+    return response.json({ name, email, cpf, provider });
+  }
+
   public async list(request: Request, response: Response): Promise<Response> {
     const userRepository = getRepository(User);
 
@@ -44,7 +56,7 @@ class UserController {
 
     await userRepository.save(createUsers);
 
-    return response.json(createUsers);
+    return response.json({ name, email, cpf });
   }
 }
 
