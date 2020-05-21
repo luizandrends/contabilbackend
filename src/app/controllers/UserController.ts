@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import axios from 'axios';
 
 import { hash } from 'bcryptjs';
 import User from '../models/User';
+
+import api from '../services/mailValidation';
 
 class UserController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -13,6 +16,15 @@ class UserController {
     const emailExists = await userRepository.findOne({
       where: { email },
     });
+
+    const mailValidation = await axios.call(
+      api.post,
+      `https://verify-email.org/home/verify-as-guest/${email}`
+    );
+
+    if (mailValidation.data.response.status === 0) {
+      return response.json({ error: 'Email does not exist' });
+    }
 
     const cpfExists = await userRepository.findOne({
       where: { cpf },
