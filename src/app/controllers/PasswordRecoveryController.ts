@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-
 import { getRepository } from 'typeorm';
+
 import User from '../models/User';
 import PasswordRecovery from '../models/UserPasswordRecovery';
 
