@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 
 import User from '../models/User';
 import PasswordRecovery from '../models/UserPasswordRecovery';
+import RecoveryMail from '../services/Mail/EtherealService';
 
 class PasswordRecoveryController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -23,6 +24,8 @@ class PasswordRecoveryController {
     });
 
     await passwordRecoveryRepository.save(createToken);
+
+    await RecoveryMail.sendMail(user.email, createToken.token);
 
     return response.json(createToken);
   }
