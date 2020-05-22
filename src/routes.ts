@@ -12,7 +12,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(AuthMiddleware);
 
-routes.get('/users', UserController.list);
 routes.get('/users/:id', UserController.get);
+routes.get('/users', UserController.list);
 
 export default routes;

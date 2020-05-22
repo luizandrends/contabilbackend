@@ -8,6 +8,16 @@ class UserController {
   public async get(request: Request, response: Response): Promise<Response> {
     const userRepository = getRepository(User);
 
+    const checkUserProvider = await userRepository.findOne({
+      where: { id: request.user.id, provider: true },
+    });
+
+    if (!checkUserProvider) {
+      return response
+        .status(401)
+        .json({ error: 'Only providers can get users' });
+    }
+
     const findUser = await userRepository.findOne({
       where: { id: request.params.id },
     });
@@ -19,6 +29,16 @@ class UserController {
 
   public async list(request: Request, response: Response): Promise<Response> {
     const userRepository = getRepository(User);
+
+    const checkUserProvider = await userRepository.findOne({
+      where: { id: request.user.id, provider: true },
+    });
+
+    if (!checkUserProvider) {
+      return response
+        .status(401)
+        .json({ error: 'Only providers can get users' });
+    }
 
     const findAllUsers = await userRepository.find();
 
@@ -41,7 +61,9 @@ class UserController {
     });
 
     if (emailExists || cpfExists) {
-      return response.json({ error: 'Email or CPF already exists' });
+      return response
+        .status(400)
+        .json({ error: 'Email or CPF already exists' });
     }
 
     const hashedPassword = await hash(password, 8);
