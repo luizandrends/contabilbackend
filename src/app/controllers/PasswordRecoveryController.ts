@@ -28,6 +28,7 @@ class PasswordRecoveryController {
 
     await PasswordRecoveryMail.handle({
       to: user.email,
+      name: user.name,
       token: createToken.token,
     });
 
