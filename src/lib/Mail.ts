@@ -19,7 +19,7 @@ class Mail {
     this.configureTemplates();
   }
 
-  configureTemplates() {
+  configureTemplates(): any {
     const viewPath = resolve(__dirname, '..', 'app', 'templates');
 
     this.transporter.use(
