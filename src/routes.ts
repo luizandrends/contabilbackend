@@ -8,6 +8,7 @@ import SessionController from './app/controllers/SessionController';
 import PasswordRecoveryController from './app/controllers/PasswordRecoveryController';
 import PasswordResetController from './app/controllers/PasswordResetController';
 import FileController from './app/controllers/FileController';
+import NotificationController from './app/controllers/NotificationController';
 
 import AuthMiddleware from './app/middleware/auth';
 
@@ -27,4 +28,7 @@ routes.get('/users', UserController.list);
 
 routes.post('/files', upload.single('file'), FileController.store);
 routes.get('/files/:id', FileController.list);
+
+routes.get('/notification', NotificationController.list);
+
 export default routes;
