@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import './database';
+import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -14,6 +15,7 @@ class App {
 
     this.middlewares();
     this.routes();
+    this.mongo();
   }
 
   private middlewares(): void {
@@ -27,6 +29,13 @@ class App {
 
   private routes(): void {
     this.express.use(routes);
+  }
+
+  private mongo(): void {
+    mongoose.connect('mongodb://localhost:27017/mongocontabil', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   }
 }
 

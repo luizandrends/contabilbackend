@@ -4,6 +4,8 @@ import { getRepository } from 'typeorm';
 import File from '../models/File';
 import User from '../models/User';
 
+import Notification from '../schemas/Notification';
+
 class FileController {
   public async list(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
@@ -26,7 +28,7 @@ class FileController {
     });
 
     const findFiles = await fileRepository.find({
-      where: { user_id: findUser.id },
+      where: { user_id: findUser?.id },
     });
 
     return response.json(findFiles);
@@ -46,9 +48,19 @@ class FileController {
 
     await fileRepository.save(createFiles);
 
-    return response.json({
-      file: createFiles,
+    const userRepository = getRepository(User);
+
+    // Notificando o prestador
+
+    const findUser = await userRepository.findOne({
+      where: { id: request.user.id },
     });
+
+    await Notification.create({
+      content: `Novo documento de ${findUser?.name}`,
+    });
+
+    return response.json(createFiles);
   }
 }
 

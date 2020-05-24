@@ -1,5 +1,5 @@
-[
-  {
+{
+    "name": "default",
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
@@ -15,15 +15,4 @@
     "cli": {
       "migrationsDir": "./src/database/migrations"
     }
-  },
-  {
-    "type": "mongodb",
-    "host": "localhost",
-    "port": 27017,
-    "database": "mongocontabil",
-    "useUnifiedTopology": true,
-    "entities": [
-      "./src/app/schemas/*.ts"
-    ]
   }
-]
