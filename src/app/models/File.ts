@@ -7,6 +7,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  ColumnType,
 } from 'typeorm';
 import User from './User';
 

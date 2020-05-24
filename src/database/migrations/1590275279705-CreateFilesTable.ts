@@ -29,6 +29,10 @@ export default class CreateFilesTable1590274553923
             isUnique: true,
           },
           {
+            name: 'url',
+            type: 'varchar',
+          },
+          {
             name: 'user_id',
             type: 'uuid',
           },
@@ -68,6 +72,8 @@ export default class CreateFilesTable1590274553923
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('files', 'UserFieldToFiles');
 
-    await queryRunner.dropColumn('user_id', 'files');
+    await queryRunner.dropColumn('files', 'user_id');
+
+    await queryRunner.dropTable('files');
   }
 }
