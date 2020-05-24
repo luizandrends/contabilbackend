@@ -10,7 +10,15 @@ class NotificationController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    return response.json({ ok: true });
+    const { id } = request.params;
+
+    const updateNotification = await Notification.findByIdAndUpdate(
+      id,
+      { read: true },
+      { new: true }
+    );
+
+    return response.json(updateNotification);
   }
 }
 
