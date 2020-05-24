@@ -1,17 +1,29 @@
-{
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "postgres",
-  "password": "docker",
-  "database": "contabilherval",
-  "entities": [
-    "./src/app/models/*.ts"
-  ],
-  "migrations": [
-    "./src/database/migrations/*.ts"
-  ],
-  "cli": {
-    "migrationsDir": "./src/database/migrations"
+[
+  {
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "docker",
+    "database": "contabilherval",
+    "entities": [
+      "./src/app/models/*.ts"
+    ],
+    "migrations": [
+      "./src/database/migrations/*.ts"
+    ],
+    "cli": {
+      "migrationsDir": "./src/database/migrations"
+    }
+  },
+  {
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "mongocontabil",
+    "useUnifiedTopology": true,
+    "entities": [
+      "./src/app/schemas/*.ts"
+    ]
   }
-}
+]
