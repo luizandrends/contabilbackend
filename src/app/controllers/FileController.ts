@@ -4,6 +4,10 @@ import { getRepository } from 'typeorm';
 import File from '../models/File';
 
 class FileController {
+  public async list(request: Request, response: Response): Promise<Response> {
+    return response.json({ ok: true });
+  }
+
   public async store(request: Request, response: Response): Promise<Response> {
     const { originalname: name, filename: path } = request.file;
 

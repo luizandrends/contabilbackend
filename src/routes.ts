@@ -26,5 +26,5 @@ routes.get('/users/:id', UserController.get);
 routes.get('/users', UserController.list);
 
 routes.post('/files', upload.single('file'), FileController.store);
-
+routes.get('/files', FileController.list);
 export default routes;
