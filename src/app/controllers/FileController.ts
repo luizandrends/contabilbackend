@@ -13,19 +13,15 @@ class FileController {
     const userRepository = getRepository(User);
     const fileRepository = getRepository(File);
 
-    const checkUserProvider = await userRepository.findOne({
-      where: { id: request.user.id, provider: true },
-    });
-
-    if (!checkUserProvider) {
-      return response
-        .status(401)
-        .json({ error: 'Only providers can get files' });
-    }
-
     const findUser = await userRepository.findOne({
       where: { id },
     });
+
+    if (findUser?.id !== request.user.id) {
+      return response
+        .status(401)
+        .json({ error: 'You only can list your own files' });
+    }
 
     const findFiles = await fileRepository.find({
       where: { user_id: findUser?.id },
