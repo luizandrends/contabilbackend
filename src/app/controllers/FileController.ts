@@ -17,7 +17,12 @@ class FileController {
 
     await fileRepository.save(createFiles);
 
-    return response.json(createFiles);
+    const url = `http://localhost:3333/files/${createFiles.path}`;
+
+    return response.json({
+      file: createFiles,
+      url,
+    });
   }
 }
 
