@@ -16,6 +16,7 @@ const upload = multer(uploadConfig);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+
 routes.post('/password-recovery', PasswordRecoveryController.store);
 routes.post('/password-reset', PasswordResetController.store);
 
