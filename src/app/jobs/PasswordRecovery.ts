@@ -12,8 +12,6 @@ class PasswordRecovery {
   }
 
   async handle({ to, token, name }: IHandle): Promise<void> {
-    console.log(to, token, name);
-
     await Mail.sendMail({
       to,
       name,
